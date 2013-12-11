@@ -4,18 +4,12 @@
 (defn looks-like-an-int? [n]
   (re-find #"^\d+$" n))
 
-(defn sum-to-zero
-  ([n]
-    (sum-to-zero n 0))
-  ([n sum]
-    (if (= n 0)
-      sum
-      (recur (dec n) (+ n sum)))))
-
-(defn sum-one-to-n [n]
-  (if (not (looks-like-an-int? n))
-    (println "not a positive integer")
-    (sum-to-zero (convert-to-int n))))
-
 (println "Please enter a number: ")
-(println (sum-one-to-n (read-line)))
+(println
+  (let [n (read-line)]
+    (if (not (looks-like-an-int? n))
+      "not a positive integer"
+      (reduce
+        +
+        (range
+          (convert-to-int n))))))
