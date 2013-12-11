@@ -12,4 +12,5 @@
       (reduce
         +
         (range
-          (convert-to-int n))))))
+          1
+          (+ 1 (convert-to-int n))))))) ; upper bound of range is exclusive
